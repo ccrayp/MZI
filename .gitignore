@@ -1,0 +1,59 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Rr]elease[ -]x64/
+[Rr]elease[ -]x86/
+[Oo]bj/
+[Bb]in/
+[Ll]og/
+*.log
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.sln.ide
+*.sln.docstates
+
+# Visual Studio 2019
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2022
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# C++ specific
+*.pdb
+*.idb
+*.ilk
+*.ipch/
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+*.cache
+*.log
+*.tlog
+*.lastbuildstate
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+packages/
