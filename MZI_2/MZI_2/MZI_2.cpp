@@ -5,13 +5,19 @@
 
 typedef unsigned int uint;
 
-bool check_prime(uint a, uint b);
+bool is_prime(uint a, uint b);
 std::vector<int> LCG(uint n, uint seed, uint m, uint a, uint c);
 std::string output_vector(std::vector<int> v);
+std::vector<int> factorise(int m);
+int LCG_init();
 
 int main()
 {
-    uint n = 0, seed = 0, m = 0, a = 0, c = 0;
+    return LCG_init();
+}
+
+int LCG_init() {
+    uint n = 0, seed = 0, a = 0, c = 0, m = 0;
     std::cout << "Enter n: ";
     std::cin >> n;
     std::cout << "Enter seed: ";
@@ -34,20 +40,41 @@ int main()
         std::cout << "Incorrect value of c\n";
         return 3;
     }
-    std::ofstream out("generated.txt");
-    if (!out.is_open()) {
-        std::cout << "File ws not opened\n";
+    if (!is_prime(c, m)) {
+        std::cout << "c and m is not prime\n";
         return 4;
     }
+    int b = a - 1;
+    if (m % 4 == 0 && b % 4 != 0) {
+        std::cout << "c and m is not prime\n";
+        return 5;
+    }
+    std::ofstream out("generated.txt", std::ios_base::binary);
+    if (!out.is_open()) {
+        std::cout << "File ws not opened\n";
+        return 6;
+    }
 
-    std::string generated = output_vector(LCG(n, seed, m, a, c));
-    std::cout << generated;
-    out << generated;
+    std::vector<int> gen = LCG(n, seed, m, a, c);
+    for (auto val : gen) {
+        out.write(reinterpret_cast<char*>(&val), sizeof(int));
+    }
     out.close();
+
+    std::cout << output_vector(gen) << std::endl;
 }
 
-bool check_prime(uint a, uint b) {
-    return true;
+bool is_prime(uint a, uint b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+
+    if (a == 1)
+        return true;
+    else
+        return false;
 }
 
 std::vector<int> LCG(uint n, uint seed, uint m, uint a, uint c) {
@@ -65,4 +92,8 @@ std::string output_vector(std::vector<int> v) {
     for (auto n : v)
         res += std::to_string(n) + " ";
     return res + '\n';
+}
+
+std::vector<int> factorise(int m) {
+    return std::vector<int>();
 }
