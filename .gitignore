@@ -1,0 +1,7 @@
+*.vsidx
+*.suo
+*.db
+*.json
+*.ipch
+*.pdb
+*.vs
