@@ -54,7 +54,8 @@ int LCG_init() {
     std::cout << "Сгенерированная LCG последовательность\n\nВ виде битовой строки:\n";
     for (int i = 0; i < n + 1; i++) {
         binary.push_back(LCG.generate());
-        std::cout << binary.back();
+        if(i != n)
+            std::cout << binary.back();
         if (i % 8 == 0 && i != 0) {
             decimal.push_back(b.to_ulong());
             out.write(reinterpret_cast<const char*>(&decimal.back()), sizeof(uint8_t));
@@ -92,7 +93,8 @@ int BBS_init() {
     std::cout << "Сгенерированная LCG последовательность\n\nВ виде битовой строки:\n";
     for (int i = 0; i < n + 1; i++) {
         binary.push_back(BBS.generate());
-        std::cout << binary.back();
+        if (i != n)
+            std::cout << binary.back();
         if (i % 8 == 0 && i != 0) {
             decimal.push_back(b.to_ulong());
             out.write(reinterpret_cast<const char*>(&decimal.back()), sizeof(uint8_t));
@@ -130,7 +132,8 @@ int LFSR_init() {
     std::cout << "Сгенерированная LFSR последовательность\n\nВ виде битовой строки:\n";
     for (int i = 0; i < n + 1; i++) {
         binary.push_back(LFSR.generate());
-        std::cout << binary.back();
+        if (i != n)
+            std::cout << binary.back();
         if (i % 8 == 0 && i != 0) {
             decimal.push_back(b.to_ulong());
             out.write(reinterpret_cast<const char*>(&decimal.back()), sizeof(uint8_t));
