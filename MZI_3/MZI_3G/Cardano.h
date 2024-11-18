@@ -179,7 +179,6 @@ std::string init(char grid_mode, char mode, std::string data) {
     case 0: return Cardano.encode(data); break;
     case 1: return Cardano.decode(data); break;
     }
-
 }
 
 //void test() {
