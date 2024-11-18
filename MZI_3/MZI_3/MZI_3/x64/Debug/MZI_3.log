@@ -1,0 +1,5 @@
+﻿  MZI_3.cpp
+E:\Документы\MZI\MZI_3\MZI_3\MZI_3\Cardano.h(140,24): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "MZI_3.cpp")
+  
+  MZI_3.vcxproj -> E:\Документы\MZI\MZI_3\MZI_3\x64\Debug\MZI_3.exe

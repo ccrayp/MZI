@@ -5,3 +5,4 @@
 *.ipch
 *.pdb
 *.vs
+*.vcxproj
