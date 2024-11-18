@@ -1,4 +1,7 @@
+#include <msclr/marshal_cppstd.h>
+#include <msclr/marshal.h>
 #include "Cardano.h"
+#include "CardanoG.h"
 #include <Windows.h>
 
 using namespace System;
@@ -9,6 +12,6 @@ int main()
 {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	MZI3G::Cardano form;
+	MZI3G::CardanoG form;
 	Application::Run(% form);
 }

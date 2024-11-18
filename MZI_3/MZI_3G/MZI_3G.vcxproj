@@ -125,13 +125,14 @@
     <ClCompile Include="Cardano.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cardano.h">
+    <ClInclude Include="Cardano.h" />
+    <ClInclude Include="CardanoG.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Cardano.resx">
-      <DependentUpon>Cardano.h</DependentUpon>
+    <EmbeddedResource Include="CardanoG.resx">
+      <DependentUpon>CardanoG.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
