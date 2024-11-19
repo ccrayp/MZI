@@ -11,9 +11,8 @@ class LCG {
 public:
     LCG() {}
 
-    bool generate() {
-        last_generated = (a * last_generated + c) % m;
-        return std::bitset<1>(last_generated)[0];
+    uint8_t generate() {
+        return last_generated = (a * last_generated + c) % m;
     }
 
 private:

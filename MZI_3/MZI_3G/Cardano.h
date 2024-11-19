@@ -122,17 +122,10 @@ private:
     unsigned short int status = 0;
     std::string result;
     size_t quantity;
-    std::vector<std::vector<bool>> grid = { { 0, 1, 0, 1, 0, 0, 1, 0 },
-                                            { 0, 0, 0, 0, 1, 0, 0, 0 },
-                                            { 1, 0, 1, 0, 0, 0, 1, 0 },
-                                            { 0, 0, 0, 1, 0, 0, 0, 0 },
-                                            { 0, 1, 0, 0, 0, 1, 0, 0 },
-                                            { 1, 0, 0, 0, 1, 0, 0, 0 },
-                                            { 0, 0, 1, 0, 0, 0, 1, 0 },
-                                            { 0, 0, 0, 1, 0, 0, 0, 1 } };
+    std::vector<std::vector<bool>> grid;
 };
 
-std::string init(char grid_mode, char mode, std::string data) {
+std::string init(char grid_mode, char mode, std::string data/*, std::string key*/) {
     std::vector<std::vector<bool>> grid;
     size_t q = 0;
     switch (grid_mode) {
@@ -152,7 +145,7 @@ std::string init(char grid_mode, char mode, std::string data) {
                      { 0, 1, 0, 0, 0, 1, 0, 0 },
                      { 1, 0, 0, 0, 1, 0, 0, 0 },
                      { 0, 0, 1, 0, 0, 0, 1, 0 },
-                     { 0, 0, 0, 1, 0, 0, 0, 1 } }; q = 0; break;
+                     { 0, 0, 0, 1, 0, 0, 0, 1 } }; q = 16; break;
 
     case 3: grid = { { 0, 1, 0, 1, 0, 0, 1, 0 },
                      { 0, 0, 0, 0, 1, 0, 0, 0 },
@@ -161,7 +154,7 @@ std::string init(char grid_mode, char mode, std::string data) {
                      { 0, 1, 0, 0, 0, 1, 0, 0 },
                      { 1, 0, 0, 0, 1, 0, 0, 0 },
                      { 0, 0, 1, 0, 0, 0, 1, 0 },
-                     { 0, 0, 0, 1, 0, 0, 0, 1 } }; q = 0; break;
+                     { 0, 0, 0, 1, 0, 0, 0, 1 } }; q = 16; break;
 
     case 4: grid = { { 0, 1, 0, 1, 1, 0, 1, 0 },
                      { 0, 1, 0, 0, 0, 1, 1, 1 },
@@ -206,13 +199,13 @@ std::string init(char grid_mode, char mode, std::string data) {
 //}
 //
 //std::vector<std::vector<bool>> grid = { { 0, 0, 0, 0, 0, 0, 1, 1 },
-//                                            { 0, 0, 0, 0, 0, 0, 0, 1 },
-//                                            { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                            { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                            { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                            { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                            { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                            { 0, 0, 0, 0, 0, 0, 0, 0 } };
+//                                        { 0, 0, 0, 0, 0, 0, 0, 1 },
+//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
+//                                        { 0, 0, 0, 0, 0, 0, 0, 0 } };
 //
 //void count(std::vector<std::vector<int>>& test) {
 //    for (int i = 0; i < 8; i++) {

@@ -37,7 +37,7 @@ int main()
 int LCG_init() {
     system("cls");
     uint n = 0, seed = 0, a = 0, c = 0, m = 0;
-    std::cout << "LCG generator\n\nВведите требуемое количество битов\n>> ";
+    std::cout << "LCG generator\n\nВведите требуемое количество 8-битных чисел\n>> ";
     std::cin >> n;
 
     std::ofstream out("generated_LCG.bin", std::ios::binary);
@@ -47,20 +47,14 @@ int LCG_init() {
     }
 
     LCG LCG;
-    std::vector<bool> binary;
     std::vector<uint8_t> decimal;
     std::bitset<8> b;
     system("cls");
     std::cout << "Сгенерированная LCG последовательность\n\nВ виде битовой строки:\n";
-    for (int i = 0; i < n + 1; i++) {
-        binary.push_back(LCG.generate());
-        if(i != n)
-            std::cout << binary.back();
-        if (i % 8 == 0 && i != 0) {
-            decimal.push_back(b.to_ulong());
-            out.write(reinterpret_cast<const char*>(&decimal.back()), sizeof(uint8_t));
-        }
-        b[i % 8] = binary.back();
+    for (int i = 0; i < n; i++) {
+        decimal.push_back(LCG.generate());
+        std::cout << std::bitset<8>(decimal.back());
+        out.write(reinterpret_cast<const char*>(&decimal.back()), sizeof(uint8_t));
     }
     std::cout << std::endl << "\nВ виде 8-битных чисел:\n";
     for (int i = 0; i < decimal.size(); i++) {
@@ -115,7 +109,7 @@ int BBS_init() {
 int LFSR_init() {
     system("cls");
     uint n = 0, seed = 0, a = 0, c = 0, m = 0;
-    std::cout << "LFSR generator\n\nВведите требуемое количество битов\n>> ";
+    std::cout << "LFSR generator\n\nВведите требуемое количество 8-битных чисел\n>> ";
     std::cin >> n;
 
     std::ofstream out("generated_LFSR.bin", std::ios::binary);
@@ -125,20 +119,14 @@ int LFSR_init() {
     }
 
     LFSR LFSR;
-    std::vector<bool> binary;
     std::vector<uint8_t> decimal;
-    std::bitset<8> b;
     system("cls");
     std::cout << "Сгенерированная LFSR последовательность\n\nВ виде битовой строки:\n";
-    for (int i = 0; i < n + 1; i++) {
-        binary.push_back(LFSR.generate());
-        if (i != n)
-            std::cout << binary.back();
-        if (i % 8 == 0 && i != 0) {
-            decimal.push_back(b.to_ulong());
-            out.write(reinterpret_cast<const char*>(&decimal.back()), sizeof(uint8_t));
-        }
-        b[i % 8] = binary.back();
+    for (int i = 0; i < n; i++) {
+        std::bitset<8> temp = LFSR.generate();
+        std::cout << temp;
+        decimal.push_back(temp.to_ulong());
+        out.write(reinterpret_cast<const char*>(&decimal.back()), sizeof(uint8_t));
     }
     std::cout << std::endl << "\nВ виде 8-битных чисел:\n";
     for (int i = 0; i < decimal.size(); i++) {

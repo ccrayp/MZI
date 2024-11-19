@@ -47,6 +47,7 @@ namespace MZI3G {
 			}
 		}
 	private: char method = 0;
+	private: String^ key;
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ âûáğàòüÔàéëToolStripMenuItem;
