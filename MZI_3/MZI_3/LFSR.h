@@ -5,8 +5,8 @@
 
 class LFSR {
 public:
-    LFSR() : last_generated(85) {}
-    LFSR(unsigned char seed) : last_generated(seed) {}
+    LFSR() : last_generated(181) {}
+    LFSR(unsigned int seed) : last_generated(seed) {}
 
     std::bitset<8> generate() {
         std::bitset<8> res;

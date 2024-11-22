@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <Windows.h>
 
 class Cardano {
 public:
@@ -124,103 +125,3 @@ private:
     size_t quantity;
     std::vector<std::vector<bool>> grid;
 };
-
-std::string init(char grid_mode, char mode, std::string data/*, std::string key*/) {
-    std::vector<std::vector<bool>> grid;
-    size_t q = 0;
-    switch (grid_mode) {
-    case 1: grid = { { 0, 1, 0, 1, 0, 0, 1, 0 },
-                     { 0, 0, 0, 0, 1, 0, 0, 0 },
-                     { 1, 0, 1, 0, 0, 0, 1, 0 },
-                     { 0, 0, 0, 1, 0, 0, 0, 0 },
-                     { 0, 1, 0, 0, 0, 1, 0, 0 },
-                     { 1, 0, 0, 0, 1, 0, 0, 0 },
-                     { 0, 0, 1, 0, 0, 0, 1, 0 },
-                     { 0, 0, 0, 1, 0, 0, 0, 1 } }; q = 16; break;
-
-    case 2: grid = { { 0, 1, 0, 1, 0, 0, 1, 0 },
-                     { 0, 0, 0, 0, 1, 0, 0, 0 },
-                     { 1, 0, 1, 0, 0, 0, 1, 0 },
-                     { 0, 0, 0, 1, 0, 0, 0, 0 },
-                     { 0, 1, 0, 0, 0, 1, 0, 0 },
-                     { 1, 0, 0, 0, 1, 0, 0, 0 },
-                     { 0, 0, 1, 0, 0, 0, 1, 0 },
-                     { 0, 0, 0, 1, 0, 0, 0, 1 } }; q = 16; break;
-
-    case 3: grid = { { 0, 1, 0, 1, 0, 0, 1, 0 },
-                     { 0, 0, 0, 0, 1, 0, 0, 0 },
-                     { 1, 0, 1, 0, 0, 0, 1, 0 },
-                     { 0, 0, 0, 1, 0, 0, 0, 0 },
-                     { 0, 1, 0, 0, 0, 1, 0, 0 },
-                     { 1, 0, 0, 0, 1, 0, 0, 0 },
-                     { 0, 0, 1, 0, 0, 0, 1, 0 },
-                     { 0, 0, 0, 1, 0, 0, 0, 1 } }; q = 16; break;
-
-    case 4: grid = { { 0, 1, 0, 1, 1, 0, 1, 0 },
-                     { 0, 1, 0, 0, 0, 1, 1, 1 },
-                     { 0, 1, 0, 0, 0, 0, 0, 1 },
-                     { 1, 0, 1, 1, 1, 1, 1, 1 },
-                     { 1, 0, 0, 0, 1, 1, 0, 0 },
-                     { 1, 1, 0, 1, 0, 1, 1, 0 },
-                     { 1, 0, 0, 1, 0, 0, 0, 1 },
-                     { 1, 1, 0, 1, 0, 0, 0, 0 } }; q = 32; break;
-    }
-
-    Cardano Cardano(grid, q);
-
-    switch (mode) {
-    case 0: return Cardano.encode(data); break;
-    case 1: return Cardano.decode(data); break;
-    }
-}
-
-//void test() {
-//    std::vector<std::vector<int>> test(8, std::vector<int>(8, 0));
-//    for (int i = 0; i < 4; i++) {
-//        rotate();
-//        count(test);
-//    }
-//    for (int i = 0; i < 8; i++) {
-//        for (int j = 0; j < 8; j++) {
-//            std::cout << test[i][j] << " ";
-//        }
-//        std::cout << std::endl;
-//    }
-//}
-//
-//void print_grid() {
-//    std::cout << std::endl;
-//    for (int i = 0; i < grid.size(); i++) {
-//        for (int j = 0; j < grid.size(); j++) {
-//            grid[i][j] ? std::cout << ' ' : std::cout << '#';
-//        }
-//        std::cout << std::endl;
-//    }
-//}
-//
-//std::vector<std::vector<bool>> grid = { { 0, 0, 0, 0, 0, 0, 1, 1 },
-//                                        { 0, 0, 0, 0, 0, 0, 0, 1 },
-//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                        { 0, 0, 0, 0, 0, 0, 0, 0 },
-//                                        { 0, 0, 0, 0, 0, 0, 0, 0 } };
-//
-//void count(std::vector<std::vector<int>>& test) {
-//    for (int i = 0; i < 8; i++) {
-//        for (int j = 0; j < 8; j++) {
-//            if (grid[i][j])
-//                test[i][j]++;
-//        }
-//    }
-//}
-//
-//void o(std::vector<std::vector<char>> test) {
-//    for (int i = 0; i < 8; i++) {
-//        for (int j = 0; j < 8; j++) {
-//            std::cout << test[i][j] << ' ';
-//        }
-//        std::cout << std::endl;
-//    }
-//}

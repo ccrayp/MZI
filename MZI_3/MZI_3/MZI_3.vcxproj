@@ -134,7 +134,9 @@
     <None Include="test.public" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Caesar.h" />
     <ClInclude Include="Cardano.h" />
+    <ClInclude Include="LFSR.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt" />

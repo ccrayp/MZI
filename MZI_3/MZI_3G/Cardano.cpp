@@ -1,7 +1,9 @@
+#pragma optimize("agi", off)
+
 #include <msclr/marshal_cppstd.h>
 #include <msclr/marshal.h>
 #include "Cardano.h"
-#include "CardanoG.h"
+#include "ClassicMethods.h"
 #include <Windows.h>
 
 using namespace System;
@@ -12,6 +14,6 @@ int main()
 {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	MZI3G::CardanoG form;
+	MZI3G::ClassicMethods form;
 	Application::Run(% form);
 }

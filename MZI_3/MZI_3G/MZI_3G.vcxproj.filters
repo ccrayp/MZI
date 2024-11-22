@@ -20,10 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CardanoG.h">
+    <ClInclude Include="ClassicMethods.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Cardano.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="init.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

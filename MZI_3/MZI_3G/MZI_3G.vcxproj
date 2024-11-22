@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -126,13 +127,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cardano.h" />
-    <ClInclude Include="CardanoG.h">
+    <ClInclude Include="ClassicMethods.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="init.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CardanoG.resx">
-      <DependentUpon>CardanoG.h</DependentUpon>
+    <EmbeddedResource Include="ClassicMethods.resx">
+      <DependentUpon>ClassicMethods.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
