@@ -15,11 +15,12 @@ std::string get_data();
 void save(std::string data);
 
 size_t constanta;
-std::string text;
-size_t seed;
+std::string text = "";
+std::string seed = "00000000";
 
 int main() {
-    setlocale(0, "");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     char choice = ' ';
     while (choice != '3') {
         system("cls");
@@ -71,14 +72,12 @@ void Caesar_number() {
             data = Caesar.encode(data, constanta);
             std::cout << "\n\nЗашифрованный текст:\n" << data << std::endl << std::endl;
             save(data);
-            //system("pause");
             break;
         }
         case '2': {
             data = Caesar.decode(data, constanta);
             std::cout << "\n\nРасшифрованный текст:\n" << data << std::endl << std::endl;
             save(data);
-            //system("pause");
             break;
         }
         case '3': {
@@ -92,12 +91,80 @@ void Caesar_number() {
 
 void Caesar_text() {
     system("cls");
-    std::string data = get_data();
+    Caesar Caesar;
+    char choice = ' ';
+    while (choice != '4') {
+        system("cls");
+        std::cout << "КЛЮЧ ПОГОВОРКА\n\n1. Зашифровать\n2. Расшифровать\n3. Изменить ключ\n4. Вернутся в меню Цезаря\n>> ";
+        std::cin >> choice;
+        system("cls");
+        std::string data = "1";
+        if (choice == '1' || choice == '2') {
+            data = get_data();
+            if (!data.empty())
+                std::cout << "\nИсходный текст:\n" << data;
+        }
+        if (!data.empty())
+            switch (choice) {
+            case '1': {
+                data = Caesar.encode_text_key(data, text);
+                std::cout << "\n\nЗашифрованный текст:\n" << data << std::endl << std::endl;
+                save(data);
+                break;
+            }
+            case '2': {
+                data = Caesar.decode_text_key(data, text);
+                std::cout << "\n\nРасшифрованный текст:\n" << data << std::endl << std::endl;
+                save(data);
+                break;
+            }
+            case '3': {
+                std::cout << "Текущий ключ: " << text << "\n\nВведите новых ключ\n>> ";
+                std::cin.ignore();
+                getline(std::cin, text);
+            }
+            }
+        data = "1";
+    }
 }
 
 void Caesar_LFSR() {
     system("cls");
-    std::string data = get_data();
+    Caesar Caesar;
+    char choice = ' ';
+    while (choice != '4') {
+        system("cls");
+        std::cout << "КЛЮЧ ПСП\n\n1. Зашифровать\n2. Расшифровать\n3. Изменить ключ\n4. Вернутся в меню Цезаря\n>> ";
+        std::cin >> choice;
+        system("cls");
+        std::string data = "1";
+        if (choice == '1' || choice == '2') {
+            data = get_data();
+            if (!data.empty())
+                std::cout << "\nИсходный текст:\n" << data;
+        }
+        if (!data.empty())
+            switch (choice) {
+            case '1': {
+                data = Caesar.encode_LFSR(data, std::bitset<8>(seed).to_ulong());
+                std::cout << "\n\nЗашифрованный текст:\n" << data << std::endl << std::endl;
+                save(data);
+                break;
+            }
+            case '2': {
+                data = Caesar.decode_LFSR(data, std::bitset<8>(seed).to_ulong());
+                std::cout << "\n\nРасшифрованный текст:\n" << data << std::endl << std::endl;
+                save(data);
+                break;
+            }
+            case '3': {
+                std::cout << "Текущий ключ: " << seed << "\n\nВведите новых ключ\n>> ";
+                std::cin.ignore();
+                getline(std::cin, seed);
+            }
+            }
+        data = "1";
+    }
 }
 
 std::string get_data() {

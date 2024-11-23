@@ -25,103 +25,64 @@ public:
 		return result;
 	}
 
-	std::string encode_text_key(std::string data, ...) {
+	std::string encode_text_key(std::string data, std::string key) {
 		return std::string();
 	}
 
-	std::string decode_text_key(std::string data, ...) {
+	std::string decode_text_key(std::string data, std::string key) {
 		return std::string();
 	}
 
-	std::string encode_LFSR(std::string data, unsigned int seed) {
-		LFSR LFSR(seed);
+	std::string encode_LFSR(std::string data, unsigned int key) {
+		LFSR LFSR(key);
 		std::string result;
-		for (int i = 0; i < data.size(); i++) {
-			result += encode((symbol)data[i], LFSR.generate().to_ulong());
+		for (symbol c : data) {
+			result += encode(c, LFSR.generate().to_ulong());
 		}
 		return result;
 	}
 
-	std::string decode_LFSR(std::string data, unsigned int seed) {
-		LFSR LFSR(seed);
+	std::string decode_LFSR(std::string data, unsigned int key) {
+		LFSR LFSR(key);
 		std::string result;
-		for (char c : data) {
+		for (symbol c : data) {
 			result += decode(c, LFSR.generate().to_ulong());
 		}
 		return result;
 	}
 
 private:
-	unsigned char encode(unsigned char c, long long int offset) {
+	symbol encode(symbol c, long long int offset) {
 		if (c >= 'a' && c <= 'z') {
-			c += offset;
-			c %= 'z' + 1;
-			if (c < 'a')
-				c += 'z' - 'a';
+			c = (c - 'a' + (offset % 26) + 26) % 26 + 'a';
 		}
 		else if (c >= 'A' && c <= 'Z') {
-			c += offset;
-			c %= 'Z' + 1;
-			if (c < 'A')
-				c += 'Z' - 'A';
-		} 
-		else if (c >= 'à' && c <= 'ÿ') {
-			c += offset;
-			c %= 'ÿ' + 1;
-			if (c < 'à')
-				c += 'ÿ' - 'à';
+			c = (c - 'A' + (offset % 26) + 26) % 26 + 'A';
 		}
-		else if (c >= 'À' && c <= 'ß') {
-			c += offset;
-			c %= 'ß' + 1;
-			if (c < 'À')
-				c += 'ß' - 'À';
+		else if (c >= (symbol)'à' && c <= (symbol)'ÿ') {
+			c = (c - (symbol)'à' + (offset % 32) + 32) % 32 + (symbol)'à';
 		}
-
-		/*c = (c + offset);
-		if (c >= ' ' && c <= 255) {
-			c %= 255 + 1;
-			if (c < ' ') {
-				c += 223;
-			}
-		}*/
+		else if (c >= (symbol)'À' && c <= (symbol)'ß') {
+			c = (c - (symbol)'À' + (offset % 32) + 32) % 32 + (symbol)'À';
+		}
 		return c;
 	}
 
-	unsigned char decode(unsigned char c, long long int offset) {
+	symbol decode(symbol c, long long int offset) {
 		offset *= -1;
-		if (c >= 'a' && c <= 'z') {
-			c += offset;
-			c %= 'z' + 1;
-			if (c < 'a')
-				c += 'a';
+		if (c >= (symbol)'a' && c <= (symbol)'z') {
+			c = (c - (symbol)'a' + (offset % 26) + 26) % 26 + (symbol)'a';
 		}
-		else if (c >= 'A' && c <= 'Z') {
-			c += offset;
-			c %= 'Z' + 1;
-			if (c < 'A')
-				c += 'A';
+		else if (c >= (symbol)'A' && c <= (symbol)'Z') {
+			c = (c - (symbol)'A' + (offset % 26) + 26) % 26 + (symbol)'A';
 		}
-		else if (c >= 'à' && c <= 'ÿ') {
-			c += offset;
-			c %= 'ÿ' + 1;
-			if (c < 'à')
-				c += 'à';
+		else if (c >= (symbol)'à' && c <= (symbol)'ÿ') {
+			c = (c - (symbol)'à' + (offset % 32) + 32) % 32 + (symbol)'à';
 		}
-		else if (c >= 'À' && c <= 'ß') {
-			c += offset;
-			c %= 'ß' + 1;
-			if (c < 'À')
-				c += 'À';
+		else if (c >= (symbol)'À' && c <= (symbol)'ß') {
+			c = (c - (symbol)'À' + (offset % 32) + 32) % 32 + (symbol)'À';
 		}
-
-		/*c = (c + offset);
-		if (c >= ' ' && c <= 255) {
-			c %= 255 + 1;
-			if (c < ' ') {
-				c += ' ';
-			}
-		}*/
 		return c;
 	}
+
 };
