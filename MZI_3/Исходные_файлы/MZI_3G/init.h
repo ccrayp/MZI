@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bitset>
+#include <vector>
 #include <string>
 
 std::string init(char mode, std::string data) {

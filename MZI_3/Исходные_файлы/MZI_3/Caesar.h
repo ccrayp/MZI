@@ -104,5 +104,4 @@ private:
 		}
 		return c;
 	}
-
 };

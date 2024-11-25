@@ -131,16 +131,9 @@
     <ClCompile Include="MZI_3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="test.cipher" />
-    <None Include="test.public" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Caesar.h" />
     <ClInclude Include="Cardano.h" />
     <ClInclude Include="LFSR.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="test.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
