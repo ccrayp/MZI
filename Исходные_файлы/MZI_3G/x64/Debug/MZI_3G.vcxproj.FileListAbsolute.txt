@@ -1,0 +1,3 @@
+E:\Документы\MZI\MZI_3\MZI_3G\x64\Debug\MZI_3G.vcxproj.AssemblyReference.cache
+E:\Документы\MZI\MZI_3\MZI_3G\x64\Debug\MZI_3G.vcxproj.GenerateResource.cache
+E:\Документы\MZI\MZI_3\MZI_3G\x64\Debug\MZI3G.CardanoG.resources

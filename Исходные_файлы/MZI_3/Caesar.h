@@ -6,6 +6,8 @@
 
 typedef unsigned char symbol;
 
+// Внизу файла находятся функции для шифрования Цезарем (ключ строка), высокая энтропия
+
 class Caesar {
 public:
 
@@ -27,6 +29,32 @@ public:
 
 	std::string encode_text_key(std::string data, std::string key) {
 		std::string result;
+		long long int i = 0;
+		for (symbol c : data) {
+			if (i == key.size()) {
+				i = 0;
+			}
+			result += encode(c, (unsigned char)key[i]);
+			i++;
+		}
+		return result;
+	}
+
+	std::string decode_text_key(std::string data, std::string key) {
+		std::string result;
+		long long int i = 0;
+		for (symbol c : data) {
+			if (i == key.size()) {
+				i = 0;
+			}
+			result += decode(c, (unsigned char)key[i]);
+			i++;
+		}
+		return result;
+	}
+
+	std::string encode_text_key_advanced(std::string data, std::string key) {
+		std::string result;
 		long long int offset = 0, i = 0;
 		for (symbol c : data) {
 			if (i == key.size()) {
@@ -39,7 +67,7 @@ public:
 		return result;
 	}
 
-	std::string decode_text_key(std::string data, std::string key) {
+	std::string decode_text_key_advanced(std::string data, std::string key) {
 		std::string result;
 		long long int offset = 0, i = 0;
 		for (symbol c : data) {
