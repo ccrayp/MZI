@@ -26,11 +26,31 @@ public:
 	}
 
 	std::string encode_text_key(std::string data, std::string key) {
-		return std::string();
+		std::string result;
+		long long int offset = 0, i = 0;
+		for (symbol c : data) {
+			if (i == key.size()) {
+				i = 0;
+			}
+			offset = (offset + key[i]) % 255;
+			result += encode(c, offset);
+			i++;
+		}
+		return result;
 	}
 
 	std::string decode_text_key(std::string data, std::string key) {
-		return std::string();
+		std::string result;
+		long long int offset = 0, i = 0;
+		for (symbol c : data) {
+			if (i == key.size()) {
+				i = 0;
+			}
+			offset = (offset + key[i]) % 255;
+			result += decode(c, offset);
+			i++;
+		}
+		return result;
 	}
 
 	std::string encode_LFSR(std::string data, unsigned int key) {
