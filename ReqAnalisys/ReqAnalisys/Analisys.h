@@ -6,7 +6,7 @@
 #include <cmath>
 
 void init_map(std::unordered_map<char, int>& data);
-void data_to_diagram(std::unordered_map<char, int>& diagram);
+//void data_to_diagram(std::unordered_map<char, int>& diagram);
 void text_to_diagram(std::string path, std::unordered_map<char, int>& data);
 std::string get_text(std::string path);
 
@@ -65,12 +65,11 @@ void binary_to_diagram(std::string path, std::unordered_map<uint8_t, int>& data,
 std::string get_text(std::string path)
 {
 	std::string data = "";
-	std::ifstream in(path);
+	std::ifstream in(path, std::ios::binary);
 	if (in.is_open())
 	{
-		std::string temp;
-		while (std::getline(in, temp))
-		{
+		char temp;
+		while (in.read(&temp, sizeof(char))) {
 			data += temp;
 		}
 	}
