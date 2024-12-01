@@ -76,7 +76,7 @@ std::string get_text(std::string path)
 	return data;
 }
 
-void text_to_diagram(std::string path, std::unordered_map<char, int>& data)
+void text_to_diagram(std::string path, std::unordered_map<unsigned char, int>& data)
 {
 	std::string text = get_text(path);
 	for (int i = 0; i < text.size(); i++)
@@ -148,7 +148,7 @@ int find_max(std::unordered_map<int, int> data)
 	return max;
 }
 
-std::string output_acsii(std::unordered_map<char, int> data)
+std::string output_acsii(std::unordered_map<unsigned char, int> data)
 {
 	std::string result = "";
 	for (int i = 0; i < 256; i++)
@@ -156,7 +156,7 @@ std::string output_acsii(std::unordered_map<char, int> data)
 		if (i < 32)
 			result += std::to_string(i) + ". = " + std::to_string(data[(char)i]) + "\r\n";
 		else
-			result += std::to_string(i) + ". " + (char)i + " = " + std::to_string(data[(char)i]) + "\r\n";
+			result += std::to_string(i) + ". " + std::to_string((unsigned char)i) + " = " + std::to_string(data[(unsigned char)i]) + "\r\n";
 	}
 
 	return result;

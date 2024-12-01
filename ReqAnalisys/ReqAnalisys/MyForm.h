@@ -27,7 +27,7 @@ namespace FreaquencyAnalisys {
 			//
 			//TODO: äîáàâüòå êîä êîíñòðóêòîðà
 			//
-			openFileDialog1->Filter = "Òåêñòîâûé ôàéë (*.txt)|*.txt|Èçîáðàæåíèå (*.bmp)|*.bmp|Áèíàðíûé ôàéë (*.bin)|*.bin";
+			openFileDialog1->Filter = "Òåêñòîâûé ôàéë (*.txt)|*.txt|Èçîáðàæåíèå (*.bmp)|*.bmp|Áèíàðíûé ôàéë (*.*)|*.*";
 			this->chart1->Series["Series1"]->Points->AddXY(0, 0);
 			this->chart1->ChartAreas[0]->AxisX->ScaleView->Zoomable = true;
 			this->chart1->ChartAreas[0]->AxisY->ScaleView->Zoomable = true;
@@ -352,10 +352,11 @@ namespace FreaquencyAnalisys {
 		{
 			this->chart1->Series["Series1"]->Points->Clear();
 
-			if (openFileDialog1->FileName->Contains(".txt"))
+			if (openFileDialog1->FileName->Contains(".txt")) {
+				this->chart1->Series["R"]->Points->Clear();
+				this->chart1->Series["G"]->Points->Clear();
+				this->chart1->Series["B"]->Points->Clear();
 				text();
-			else if (openFileDialog1->FileName->Contains(".bin")) {
-				binary();
 			}
 			else if (openFileDialog1->FileName->Contains(".bmp"))
 			{
@@ -367,6 +368,12 @@ namespace FreaquencyAnalisys {
 				this->ñêðûòüÇåë¸íûéGÊàíàëToolStripMenuItem->Text = "Ñêðûòü çåë¸íûé (G) êàíàë";
 				this->ñêðûòüÑèíèéBÊàíàëToolStripMenuItem->Text = "Ñêðûòü ñèíèé (B) êàíàë";
 			}
+			else {
+				this->chart1->Series["R"]->Points->Clear();
+				this->chart1->Series["G"]->Points->Clear();
+				this->chart1->Series["B"]->Points->Clear();
+				binary();
+			}
 		}
 	}
 
@@ -376,13 +383,14 @@ namespace FreaquencyAnalisys {
 		this->ñêðûòüÇåë¸íûéGÊàíàëToolStripMenuItem->Visible = false;
 		this->ñêðûòüÑèíèéBÊàíàëToolStripMenuItem->Visible = false;
 
-		std::unordered_map<char, int> data;
+		std::unordered_map<unsigned char, int> data;
 		String^ path = System::Convert::ToString(openFileDialog1->FileName);
 		text_to_diagram(msclr::interop::marshal_as<std::string>(path), data);
 		int max_value = find_max(data);
 		max = max_value;
 
 		this->chart1->ChartAreas["ChartArea1"]->AxisY->Maximum = max_value + (max_value * 0.1);
+		this->chart1->ChartAreas["ChartArea1"]->AxisX->Minimum = 0;
 		this->chart1->ChartAreas["ChartArea1"]->AxisX->Maximum = 255;
 
 		this->trackBar1->Value = 5;
@@ -399,10 +407,9 @@ namespace FreaquencyAnalisys {
 		this->label4->Text = Convert::ToString(max / 20);
 		this->label5->Text = Convert::ToString(Convert::ToInt32(this->label4->Text) * 20);
 
-		for (int i = 255; i > 0; i--)
+		for (auto it : data)
 		{
-			if (data[(char)i] > -1)
-				this->chart1->Series["Series1"]->Points->AddXY(i, data[(char)i]);
+			this->chart1->Series["Series1"]->Points->AddXY(it.first, it.second);
 		}
 
 		this->textBox1->Text = gcnew String(output_acsii(data).c_str()) + "\r\nÝíòðîïèÿ ôàéëà: " + Convert::ToString(entropy(data));
@@ -421,6 +428,7 @@ namespace FreaquencyAnalisys {
 		max = max_value;
 
 		this->chart1->ChartAreas["ChartArea1"]->AxisY->Maximum = max_value + (max_value * 0.1);
+		this->chart1->ChartAreas["ChartArea1"]->AxisX->Minimum = 0;
 		this->chart1->ChartAreas["ChartArea1"]->AxisX->Maximum = 255;
 
 		this->trackBar1->Value = 5;
@@ -468,6 +476,7 @@ namespace FreaquencyAnalisys {
 		max = max_value;
 
 		this->chart1->ChartAreas["ChartArea1"]->AxisY->Maximum = max_value + (max_value * 0.1);
+		this->chart1->ChartAreas["ChartArea1"]->AxisX->Minimum = 0;
 		this->chart1->ChartAreas["ChartArea1"]->AxisX->Maximum = 255;
 
 		this->trackBar1->Value = 5;
