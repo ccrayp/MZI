@@ -4,9 +4,13 @@
 std::string DES::OFB::encode(std::string data, std::string key, std::string IV) {
     data.size() % 2 == 1 ? data += "x" : data += "";
     std::vector<uint8_t> keys = Key::generate_keys(key);
-    std::string result, output = IV;
+    std::string result, output = IV, prev = IV, ciphered = IV;
 
     for (size_t i = 0; i < data.size(); i += 2) {
+        for (uint8_t j = 0; j < prev.size(); j++) {
+            ciphered[j] ^= prev[j];
+        }
+
         for (uint8_t j = 0; j < 7; j++) {
             output = Feistel::round(output, keys[j]);
         }
@@ -17,6 +21,8 @@ std::string DES::OFB::encode(std::string data, std::string key, std::string IV) 
             block[j] ^= output[j];
         }
         result += block;
+        ciphered = block;
+        prev = data.substr(i, 2);
     }
     return result;
 }

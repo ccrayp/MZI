@@ -417,7 +417,7 @@ void save(std::string data) {
 }
 
 static void test_DES() {
-    std::string key = ECB_key;
+    std::string key = ECB_key, iv = "аб";
     std::string temp = DES::ECB::encode("test", key);
     temp = DES::ECB::decode(temp, key);
     if (temp != "test")
@@ -425,22 +425,22 @@ static void test_DES() {
     else
         std::cout << "\033[32mECB. Тест пройден\033[0m\n";
 
-    temp = DES::CBC::encode("test", key, "ab");
-    temp = DES::CBC::decode(temp, key, "ab");
+    temp = DES::CBC::encode("test", key, iv);
+    temp = DES::CBC::decode(temp, key, iv);
     if (temp != "test")
         std::cout << "\033[31mCBC. Тест провален\033[0m\n";
     else
         std::cout << "\033[32mCBC. Тест пройден\033[0m\n";
 
-    temp = DES::CFB::encode("test", key, "ab");
-    temp = DES::CFB::decode(temp, key, "ab");
+    temp = DES::CFB::encode("test", key, iv);
+    temp = DES::CFB::decode(temp, key, iv);
     if (temp != "test")
         std::cout << "\033[31mCFB. Тест провален\033[0m\n";
     else
         std::cout << "\033[32mCFB. Тест пройден\033[0m\n";
 
-    temp = DES::OFB::encode("test", key, "ab");
-    temp = DES::OFB::decode(temp, key, "ab ");
+    temp = DES::OFB::encode("test", key, iv);
+    temp = DES::OFB::decode(temp, key, iv);
     if (temp != "test")
         std::cout << "\033[31mOFB. Тест провален\033[0m\n";
     else
