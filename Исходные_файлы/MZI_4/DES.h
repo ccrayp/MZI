@@ -37,7 +37,6 @@ public:
 		static std::string decode(std::string data, std::string key, std::string IV);
 	};
 
-private:
 	class Feistel {
 	public:
 		static std::string round(std::string data, uint8_t key);
@@ -46,6 +45,7 @@ private:
 		static uint8_t F(uint8_t byte, uint8_t key);
 	};
 
+private:
 	class Key {
 	public:
 		static std::vector<uint8_t> generate_keys(std::string key) {
